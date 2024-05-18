@@ -6,11 +6,17 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:25:57 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 13:10:00 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:24:54 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	image_to_window(t_long *data)
+{
+	mlx_put_image_to_window(data->mlx.p, data->mlx.win, data->textures.player,
+		data->player.x * BRICK_SIZE, data->player.y * BRICK_SIZE);
+}
 
 static int	is_valid(char c)
 {

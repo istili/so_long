@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:45:22 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 16:49:23 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:23:30 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define MAP_ERR "map error\n"
 # define MLX_ERR "Error\n"
 # define ARG_ERR "Error: No map.xpm found!"
-# define BRICK_SIZE 40
+# define BRICK_SIZE 32
 
 typedef struct s_img
 {
@@ -116,5 +116,8 @@ void	flood_fill(char **map2d, t_point size, t_point begin);
 int		draw_map(t_long *data);
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void	init_image(t_long *data);
+char	*ft_itoa(int n);
+void	score(t_long *data);
+void	image_to_window(t_long *data);
 
 #endif

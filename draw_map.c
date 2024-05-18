@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:30:31 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 13:07:20 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:22:49 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	draw_map(t_long *data)
 		i++;
 		starting_pixel.y += BRICK_SIZE;
 	}
-	mlx_put_image_to_window(data->mlx.p, data->mlx.win, data->textures.player,
-		data->player.x * BRICK_SIZE, data->player.y * BRICK_SIZE);
+	image_to_window(data);
+	score(data);
 	draw_map_check(data, &starting_pixel);
 	return (1);
 }

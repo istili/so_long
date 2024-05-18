@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:27:42 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 12:52:09 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 19:43:36 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	check_map_helper(t_map *map, int size, int i, t_node *node)
 {
 	map->size.x = size;
 	map->size.y = i + 1;
-	if (!is_one(node->data))
+	if (!is_one(node->data) || size != ft_len(node->data))
 		return (0);
-	if (map->collectible == 0)
+	if (map->collectible == 0 || map->exit.x == -1 || map->exit.y == -1)
 		return (0);
 	map->map2d = lst_to_array(map->content);
 	flood_fill(map->map2d, map->size, map->start);

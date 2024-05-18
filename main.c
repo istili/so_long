@@ -6,18 +6,13 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:45:07 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 17:11:21 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:09:06 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	f(void)
-{
-	system("leaks so_long");
-}
-
-void	main_inits(t_long *data, t_map *map)
+static void	main_inits(t_long *data, t_map *map)
 {
 	data->map = map;
 	data->screen.x = map->size.x * BRICK_SIZE;
@@ -31,7 +26,7 @@ void	main_inits(t_long *data, t_map *map)
 		puterr(MALLOC_ERR);
 }
 
-void	main_helper(t_long *data, t_map *map)
+static void	main_helper(t_long *data, t_map *map)
 {
 	init_image(data);
 	mlx_hook(data->mlx.win, 17, (1L << 17), close_window, data);
@@ -46,7 +41,6 @@ int	main(int ac, char **av)
 	t_map	*map;
 	t_long	data;
 
-	atexit(f);
 	map = ft_parsing(ac, av);
 	main_inits(&data, map);
 	data.mlx.win = mlx_new_window(data.mlx.p,

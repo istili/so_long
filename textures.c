@@ -6,11 +6,21 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:58:47 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 13:28:08 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:08:03 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	score(t_long *data)
+{
+	char	*s;
+
+	s = ft_itoa(data->moves);
+	mlx_string_put(data->mlx.p, data->mlx.win, 5, 5,
+		0xFFFFFF, s);
+	free(s);
+}
 
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
@@ -28,7 +38,7 @@ int	close_window(t_long *data)
 	return (1);
 }
 
-char	*init_img_util(t_long *data, char *filename)
+static char	*init_img_util(t_long *data, char *filename)
 {
 	int		tmp;
 	void	*res;

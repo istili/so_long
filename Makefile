@@ -6,7 +6,7 @@
 #    By: istili <istili@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 17:22:21 by istili            #+#    #+#              #
-#    Updated: 2024/05/18 16:34:24 by istili           ###   ########.fr        #
+#    Updated: 2024/05/18 20:04:32 by istili           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ RM		=	rm -rf
 
 HEADER	=	so_long.h
 
-FILE	=	main.c	so_long.c	libc.c	parsing.c parsing_2.c find_exit.c textures.c \
-	draw_map.c helpers.c check_line.c utils.c \
-	get_next_line/get_next_line.c	get_next_line/get_next_line_utils.c \
+FILE	=	main.c	handle_keys.c libc.c	parsing.c parsing_2.c flood_fill.c textures.c \
+		get_next_line/get_next_line.c	get_next_line/get_next_line_utils.c \
+		draw_map.c helpers.c check_line.c itoa.c\
 
 OBJ		=	$(FILE:.c=.o)
 

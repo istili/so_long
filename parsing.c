@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:26:00 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 16:50:15 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:05:17 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	while (!s1[i] && !s2[i] && s1[i] == s2[i])
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
 }
@@ -27,7 +27,7 @@ static int	check_extension(char *s)
 	int	size;
 
 	size = ft_len(s);
-	if (size >= 4 && ft_strcmp(&s[size - 4], ".ber") == 0)
+	if (size >= 4 && !ft_strcmp(&s[size - 4], ".ber"))
 		return (1);
 	return (0);
 }
