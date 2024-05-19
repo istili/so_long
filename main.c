@@ -6,11 +6,16 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:45:07 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 20:09:06 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:10:19 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	f(void)
+{
+	system("leaks so_long");
+}
 
 static void	main_inits(t_long *data, t_map *map)
 {
@@ -41,6 +46,7 @@ int	main(int ac, char **av)
 	t_map	*map;
 	t_long	data;
 
+	atexit(f);
 	map = ft_parsing(ac, av);
 	main_inits(&data, map);
 	data.mlx.win = mlx_new_window(data.mlx.p,

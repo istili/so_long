@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:58:47 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 20:08:03 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 14:48:34 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static char	*init_img_util(t_long *data, char *filename)
 
 void	init_image(t_long *data)
 {
-	data->textures.player = init_img_util(data, "xpm/player.xpm");
-	data->textures.collect = init_img_util(data, "xpm/collect.xpm");
-	data->textures.exit = init_img_util(data, "xpm/exit.xpm");
-	data->textures.wall = init_img_util(data, "xpm/wall.xpm");
+	data->textures.player = init_img_util(data, "textures/player.xpm");
+	data->textures.collect = init_img_util(data, "textures/collect.xpm");
+	data->textures.exit = init_img_util(data, "textures/exit.xpm");
+	data->textures.wall = init_img_util(data, "textures/wall.xpm");
 }

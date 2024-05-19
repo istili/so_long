@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:44:09 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 18:25:04 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 15:35:40 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,13 @@ static int	is_valid_char(char c)
 	return (1);
 }
 
-static void	check_line_init(int *e, int *p, int *i)
-{
-	*e = 0;
-	*p = 0;
-	*i = 0;
-}
-
 void	check_line(t_map *map, char *line, int size)
 {
-	int	e;
-	int	p;
-	int	i;
+	static int	e;
+	static int	p;
+	int			i;
 
-	check_line_init(&e, &p, &i);
+	i = 0;
 	if (size != ft_len(line))
 		puterr(RECTANGULAR_ERR);
 	if (line[size - 1] != '1' || line[0] != '1')
