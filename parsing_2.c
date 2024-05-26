@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:27:42 by istili            #+#    #+#             */
-/*   Updated: 2024/05/19 15:01:53 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 20:00:04 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	check_map_helper(t_map *map, int size, int i, t_node *node)
 	if (map->collectible == 0 || map->exit.x == -1 || map->exit.y == -1)
 		return (0);
 	map->map2d = lst_to_array(map->content);
+	if (!map->map2d)
+		puterr(MALLOC_ERR);
 	flood_fill(map->map2d, map->size, map->start);
 	i = -1;
 	while (map->map2d[++i])

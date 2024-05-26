@@ -6,20 +6,17 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:45:22 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 18:23:30 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:15:02 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include "get_next_line/get_next_line.h"
 
-# define X_EVENT_KEY_PRESS 2
 # define KEY_W 13
 # define KEY_A 0
 # define KEY_S 1
@@ -34,18 +31,17 @@
 # define PLAYER_ERR "map have more than one player\n"
 # define EXIT_ERR "map have more than one exit\n"
 # define MAP_ERR "map error\n"
-# define MLX_ERR "Error\n"
-# define ARG_ERR "Error: No map.xpm found!"
+# define MLX_ERR "mlx return: Error\n"
+# define ARG_ERR "Error: No map.xpm found!\n"
 # define BRICK_SIZE 32
 
 typedef struct s_img
 {
 	void	*collect;
 	void	*player;
-	void	*road;
 	void	*wall;
 	void	*exit;
-	void	*closed;
+	void	*road;
 }	t_img;
 
 typedef struct s_node
@@ -62,12 +58,12 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	char	**map2d;
-	t_node	*content;
-	t_point	size;
 	int		collectible;
 	t_point	start;
 	t_point	exit;
+	t_node	*content;
+	t_point	size;
+	char	**map2d;
 }	t_map;
 
 typedef struct s_image
@@ -75,7 +71,7 @@ typedef struct s_image
 	void	*ptr;
 	char	*addr;
 	int		line_len;
-	int		bit_pr_pxl;
+	int		bpp;
 	int		endian;
 }	t_image;
 
@@ -89,7 +85,7 @@ typedef struct s_var
 typedef struct s_long
 {
 	t_map	*map;
-	t_var	mlx;
+	t_var	game;
 	t_point	screen;
 	int		nb_collectibles;
 	t_img	textures;
@@ -99,8 +95,6 @@ typedef struct s_long
 
 int		ft_len(char *s);
 void	puterr(char *s);
-void	putnb(int n);
-void	putss(char *s);
 void	add_node(t_node **head, char *line);
 t_map	*ft_parsing(int ac, char **av);
 void	check_line(t_map *map, char *line, int size);
@@ -114,10 +108,10 @@ int		close_window(t_long *data);
 int		handle_keys(int key, void *ptr);
 void	flood_fill(char **map2d, t_point size, t_point begin);
 int		draw_map(t_long *data);
+void	player_image_to_window(t_long *data);
+void	score(t_long *data);
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void	init_image(t_long *data);
 char	*ft_itoa(int n);
-void	score(t_long *data);
-void	image_to_window(t_long *data);
 
 #endif

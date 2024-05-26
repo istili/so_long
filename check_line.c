@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:44:09 by istili            #+#    #+#             */
-/*   Updated: 2024/05/19 15:35:40 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 19:50:08 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	check_line(t_map *map, char *line, int size)
 			puterr(MAP_ERR);
 		if (line[i] == 'C')
 			map->collectible++;
-		if (line[i] == 'E' && e == 0 && ++e)
+		else if (line[i] == 'E' && e == 0 && ++e)
 			map->exit.x = i;
 		else if (line[i] == 'E' && e != 0)
 			puterr(EXIT_ERR);
-		if (line[i] == 'P' && p == 0 && ++p)
+		else if (line[i] == 'P' && p == 0 && ++p)
 			map->start.x = i;
 		else if (line[i] == 'P' && p != 0)
 			puterr(PLAYER_ERR);

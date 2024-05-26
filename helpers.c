@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 12:42:27 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 17:48:33 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 20:44:01 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ char	*remove_new_line(char *line)
 	size = ft_len(line);
 	i = 0;
 	if (line[size - 1] != '\n')
+	{
 		tmp = ft_strdup(line);
+		if (!tmp)
+			puterr(MALLOC_ERR);
+	}
 	else
 	{
 		tmp = malloc(sizeof(char) * (size));
 		if (!tmp)
-			return (NULL);
+			return (MALLOC_ERR);
 		while (line[i] && line[i] != '\n')
 		{
 			tmp[i] = line[i];
@@ -92,7 +96,12 @@ char	**lst_to_array(t_node *map)
 	head = map;
 	while (head)
 	{
-		map2d[i++] = ft_strdup(head->data);
+		map2d[i] = ft_strdup(head->data);
+		if (!map2d[i++])
+		{
+			free_arr(map2d);
+			puterr(MALLOC_ERR);
+		}
 		head = head->next;
 	}
 	map2d[i] = NULL;

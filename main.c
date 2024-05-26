@@ -6,16 +6,11 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:45:07 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 20:10:19 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:02:16 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	f(void)
-{
-	system("leaks so_long");
-}
 
 static void	main_inits(t_long *data, t_map *map)
 {
@@ -26,19 +21,21 @@ static void	main_inits(t_long *data, t_map *map)
 	data->player.y = map->start.y;
 	data->moves = 0;
 	data->nb_collectibles = 0;
-	data->mlx.p = mlx_init();
-	if (data->mlx.p == NULL)
-		puterr(MALLOC_ERR);
+	data->game.p = mlx_init();
+	if (data->game.p == NULL)
+		puterr(MLX_ERR);
 }
 
 static void	main_helper(t_long *data, t_map *map)
 {
 	init_image(data);
-	mlx_hook(data->mlx.win, 17, (1L << 17), close_window, data);
-	mlx_hook(data->mlx.win, 2, (1L << 0), handle_keys, data);
+	mlx_hook(data->game.win, 17, (1L << 17), close_window, data);
+	mlx_hook(data->game.win, 2, (1L << 0), handle_keys, data);
 	data->map->map2d = lst_to_array(map->content);
-	mlx_loop_hook(data->mlx.p, draw_map, data);
-	mlx_loop(data->mlx.p);
+	if (!data->map->map2d)
+		puterr(MALLOC_ERR);
+	mlx_loop_hook(data->game.p, draw_map, data);
+	mlx_loop(data->game.p);
 }
 
 int	main(int ac, char **av)
@@ -46,45 +43,24 @@ int	main(int ac, char **av)
 	t_map	*map;
 	t_long	data;
 
-	atexit(f);
 	map = ft_parsing(ac, av);
 	main_inits(&data, map);
-	data.mlx.win = mlx_new_window(data.mlx.p,
+	data.game.win = mlx_new_window(data.game.p,
 			data.screen.x, data.screen.y, "My game");
-	if (data.mlx.win == NULL)
+	if (data.game.win == NULL)
 		puterr(MLX_ERR);
-	data.mlx.img.ptr = mlx_new_image(data.mlx.p, data.screen.x, data.screen.y);
-	if (data.mlx.p == NULL)
+	data.game.img.ptr = mlx_new_image(data.game.p,
+			data.screen.x, data.screen.y);
+	if (data.game.p == NULL)
 	{
-		mlx_destroy_window(data.mlx.p, data.mlx.win);
+		mlx_destroy_window(data.game.p, data.game.win);
 		puterr(MLX_ERR);
 	}
-	data.mlx.img.addr = mlx_get_data_addr(data.mlx.img.ptr,
-			&data.mlx.img.bit_pr_pxl, &data.mlx.img.line_len,
-			&data.mlx.img.endian);
-	if (data.mlx.img.addr == NULL)
+	data.game.img.addr = mlx_get_data_addr(data.game.img.ptr,
+			&data.game.img.bpp, &data.game.img.line_len,
+			&data.game.img.endian);
+	if (data.game.img.addr == NULL)
 		close_window(&data);
 	main_helper(&data, map);
-	close_window(&data);
 	return (0);
 }
-
-// keyp_events->>hooks->
-// * mlx_connection *
-// data.mlx.p = mlx_connection that we establish using mlx_init() function;
-// 
-// window is just another memory malloc'd
-//
-// * event loop *
-// "mlx_loop" start the event loop 
-// -> an event loop keeps the app running checking for events
-// such as : mouse clicks, keyboard presses
-// while (app runnning)
-// {
-//		check for events;
-//			execute func for those events;
-// }
-// 
-//  * hooks *
-//	hooking into events 
-// (when i press a key render is triggered)  

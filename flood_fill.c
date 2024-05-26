@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_exit.c                                        :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:25:57 by istili            #+#    #+#             */
-/*   Updated: 2024/05/18 18:24:54 by istili           ###   ########.fr       */
+/*   Updated: 2024/05/19 20:18:08 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	image_to_window(t_long *data)
+void	player_image_to_window(t_long *data)
 {
-	mlx_put_image_to_window(data->mlx.p, data->mlx.win, data->textures.player,
+	mlx_put_image_to_window(data->game.p, data->game.win, data->textures.player,
 		data->player.x * BRICK_SIZE, data->player.y * BRICK_SIZE);
 }
 
